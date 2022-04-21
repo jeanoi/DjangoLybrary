@@ -1,0 +1,11 @@
+{% extends 'base.html' %}}
+
+    {% block body_block %}
+    <h1>Homepage of the library</h1>
+      <ul>Go to:
+        <li><a href="{% url 'library:list' %}">Book List</a></li>
+        <li><a href="{% url 'library:authors' %}">Author List</a></li>
+    </ul>
+    {% endblock %}
+</body>
+</html>

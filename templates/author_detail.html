@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+    <h1>Informações sobre o autor {{authors_detail.Author_name}}</h1>
+    <h1>Livros na biblioteca:
+    
+    {% for books in authors_detail.books_set.all%}
+    <ul>
+        <li>{{books.title}}</a></li>
+        <p>{{books.summary}}</p>
+    </ul>
+    {%endfor%}
+{% endblock %}

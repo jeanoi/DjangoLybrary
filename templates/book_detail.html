@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+    <h1>Informações sobre o livro {{books_detail.title}}</h1>
+        <ul>
+            <li>Autor: {{books_detail.Book_author}}</li>
+            <li>Linguagem: {{books_detail.language}}</li>
+            <li>ISBN: {{books_detail.ISBN}}</li>
+            <li>Genre: {{books_detail.genre.all|join:", "}}</li>
+        </ul>
+
+        <h1>Cópias na biblioteca:</h1>
+
+        {% for copy in books_detail.bookinstance_set.all %}
+        <hr>
+       
+        <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+            {{ copy.get_status_display }}
+        </p>
+        </div>  
+        {% if copy.status != 'a' %}
+          <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
+        {% endif %}
+        <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+        <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
+      {% endfor %}
+    </div>
+    
+{% endblock %}
